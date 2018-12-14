@@ -13,5 +13,5 @@ Example for [`nightwatch-api-cucumber`](https://github.com/mucsi96/nightwatch-ap
 git clone https://github.com/albertonarda/nightwatch-api-cucumber-example.git
 cd nightwatch-api-cucumber-example
 npm i
-npm run test
+npm test
 ```
