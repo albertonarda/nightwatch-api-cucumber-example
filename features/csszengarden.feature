@@ -3,7 +3,7 @@ Feature: CSSZenGarden Page
   Scenario: Page exists
 
     Given I open the url "http://www.csszengarden.com"
-    Then the title is "CSS Zen Garden: The Beauty of CSS Design"
+    Then the title should be "CSS Zen Garden: The Beauty of CSS Design"
 
   Scenario: Link to all designs works
 

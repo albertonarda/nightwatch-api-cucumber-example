@@ -11,10 +11,6 @@ Then("the Google search form exists", async () => {
 
 /*GENERIC STEPS*/
 
-Then("the title is {string}", async text => {
-  await client.assert.title(text);
-});
-
 Given("I open the url {string}", async text => {
   await client.url(text);
 });
