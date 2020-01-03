@@ -1,46 +1,51 @@
-const seleniumServer = require("selenium-server-standalone-jar");
-const chromeDriver = require("chromedriver");
-const geckoDriver = require("geckodriver");
+const chromedriver = require('chromedriver');
+const geckodriver = require('geckodriver');
 
 module.exports = {
-  src_folders: [],
-  output_folder: "",
-  custom_commands_path: "",
-  page_objects_path: "",
-  selenium: {
-    start_process: true,
-    server_path: seleniumServer.path,
-    host: "127.0.0.1",
-    port: 4444,
-    cli_args: {
-      "webdriver.chrome.driver": chromeDriver.path,
-      "webdriver.gecko.driver": geckoDriver.path
-    }
-  },
+  silent: !process.env.NIGHTWATCH_VERBOSE,
   test_settings: {
     default: {
+      webdriver: {
+        start_process: true,
+        port: 4444
+      },
+      screenshots: {
+        enabled: true,
+        path: 'screenshots'
+      }
+    },
+    chromeHeadless: {
+      webdriver: {
+        server_path: chromedriver.path,
+        cli_args: ['--port=4444']
+      },
       desiredCapabilities: {
-        browserName: "chrome",
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ["headless", "disable-gpu"]
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          w3c: false,
+          args: ['--headless']
         }
       }
     },
     chrome: {
+      webdriver: {
+        server_path: chromedriver.path,
+        cli_args: ['--port=4444']
+      },
       desiredCapabilities: {
-        browserName: "chrome",
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ["disable-gpu"]
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+          w3c: false
         }
       }
     },
     firefox: {
+      webdriver: {
+        server_path: geckodriver.path,
+        cli_args: ['--port', '4444', '--log', 'debug']
+      },
       desiredCapabilities: {
-        browserName: "firefox",
+        browserName: 'firefox',
         javascriptEnabled: true,
         acceptSslCerts: true,
         marionette: true
